@@ -114,5 +114,12 @@ select {
     position: absolute;
     z-index: 1;
 }
-
-  
+@media screen and (max-width: 550px) {
+	.language-select {
+		display: none;
+	}
+	.navbar-topright {
+		margin: 0px;
+		gap: 0px;
+	}
+}

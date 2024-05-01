@@ -43,3 +43,39 @@
     padding-right: 30%;
     padding-top: 20px;
 }
+@media screen and (max-width: 767px) {
+	.bold {
+		padding: 0px 40px;
+		font-size: xx-large;
+	}
+	.contentvalues {
+		padding: 2px 30px;
+		font-size: small;
+		font-weight: 400;
+	}
+}
+
+@media screen and (max-width: 426px) {
+	.bold {
+		font-size: x-large;
+	}
+	.contentvalues {
+		padding-top: 10px;
+		padding-right: 20px;
+		font-size: small;
+		font-weight: 400;
+	}
+}
+
+@media screen and (max-width: 321px) {
+	.bold {
+		margin-top: 15%;
+		font-size: larger;
+	}
+	.contentvalues {
+		padding-top: 0px;
+		padding-right: 20px;
+		font-size: small;
+		font-weight: 400;
+	}
+}

@@ -143,31 +143,28 @@ export const getPageData = async () => {
 		documentaries,
 	};
 };
-
-export const addToWishlist = async (movie) => {
-	try {
-	  console.log('Sending request to add movie:', movie);
-	  
-	  const response = await axios.post(`/api/wishlist`, movie, {
+export const addToWishlist = async (media_id) => {
+	const options = {
+		method: "POST",
 		headers: {
-		  'Content-Type': 'application/json',
-		  'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`,
+			accept: "application/json",
+			"content-type": "application/json",
+			Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
 		},
-	  });
-  
-	  console.log('Received response:', response);
-  
-	  if (!response.data.success) {
-		throw new Error(`Failed to add movie to wishlist`);
-	  }
-  
-	  return response.data;
-	} catch (error) {
-	  console.error('Error adding to wishlist:', error.message);
-	  throw error;
-	}
+	};
+
+	const { data } = await axios.post(
+		`account/${process.env.REACT_APP_ACCOUNT_ID}/favorite`,
+		{
+			media_type: "movie",
+			media_id,
+			favorite: true,
+		},
+		options
+	);
+	return data;
 };
-  
+
 export const getWishlist = async () => {
 	const options = {
 		headers: {
@@ -176,11 +173,49 @@ export const getWishlist = async () => {
 		},
 	};
 	const response = await axios.get(
-		`https://api.themoviedb.org/3/account/${process.env.REACT_APP_ACCOUNT_ID}/favorite/movies?language=en-US&page=1&sort_by=created_at.asc`,
+		`account/${process.env.REACT_APP_ACCOUNT_ID}/favorite/movies?language=en-US&page=1&sort_by=created_at.asc`,
 		options
 	);
 	return response.data;
 };
+
+// export const addToWishlist = async (movie) => {
+// 	try {
+// 	  console.log('Sending request to add movie:', movie);
+	  
+// 	  const response = await axios.post(`/api/wishlist`, movie, {
+// 		headers: {
+// 		  'Content-Type': 'application/json',
+// 		  'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`,
+// 		},
+// 	  });
+  
+// 	  console.log('Received response:', response);
+  
+// 	  if (!response.data.success) {
+// 		throw new Error(`Failed to add movie to wishlist`);
+// 	  }
+  
+// 	  return response.data;
+// 	} catch (error) {
+// 	  console.error('Error adding to wishlist:', error.message);
+// 	  throw error;
+// 	}
+// };
+  
+// export const getWishlist = async () => {
+// 	const options = {
+// 		headers: {
+// 			accept: "application/json",
+// 			Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
+// 		},
+// 	};
+// 	const response = await axios.get(
+// 		`account/${process.env.REACT_APP_ACCOUNT_ID}/favorite/movies?language=en-US&page=1&sort_by=created_at.asc`,
+// 		options
+// 	);
+// 	return response.data;
+// };
 
 const getOptions = {
 	headers: {

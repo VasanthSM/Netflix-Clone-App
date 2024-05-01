@@ -35,3 +35,27 @@
 .footer-content, .para, .py {
     color: white;
 }
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+	.footer {
+		padding: 50px 160px;
+	}
+	.footer-content {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+	.footer {
+		padding: 50px 140px;
+	}
+	.footer-content {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+@media only screen and (min-width: 1441px) {
+	.footer {
+		padding: 50px 160px;
+	}
+	.footer-content {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
